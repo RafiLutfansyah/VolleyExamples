@@ -1,6 +1,7 @@
 package com.rafilutfansyah.volleyexamples;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,17 +15,16 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private List<Model> models;
+    Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewTitle;
         public TextView textViewUsername;
-        public CardView cardView;
 
         public ViewHolder(View view) {
             super(view);
             textViewTitle = (TextView) view.findViewById(R.id.textview_title);
             textViewUsername = (TextView) view.findViewById(R.id.textview_username);
-            cardView = (CardView) view.findViewById(R.id.card_view);
         }
     }
 
@@ -34,8 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -45,12 +44,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         final Model model = models.get(position);
         holder.textViewTitle.setText(position + ". "+model.getTitle());
         holder.textViewUsername.setText(model.getUsername());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //
-            }
-        });
     }
 
     @Override
